@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/post_detail.css" />
+
+    <title>커뮤니티</title>
+  </head>
+
+  <body>
+    <header>
+      <table>
+        <tr>
+          <th><a href="javascript:history.back();" target="_self">＜</a></th>
+          <td class="title">아무 말 대잔치</td>
+          <th><img src="/image/images.jpeg" alt="" /></th>
+        </tr>
+      </table>
+    </header>
+    <section>
+      <div id="post_detail">
+        <!-- 게시글 상세내용 -->
+      </div>
+      <div class="comment">
+        <form id="comment_form">
+          <input
+            id="comment_box"
+            type="text"
+            placeholder="댓글을 남겨주세요!"
+          />
+          <hr />
+          <button class="comment_submit" type="submit" disabled>
+            댓글 등록
+          </button>
+          <!-- <button class="comment_modify_submit" type="submit" disabled>
+            댓글 수정
+          </button> -->
+        </form>
+      </div>
+      <div id="commet_zip">
+        <!-- 게시글 댓글 -->
+      </div>
+    </section>
+
+    <div class="modal" id="post_modal">
+      <div class="modal_body">
+        <p class="modal_title">게시글을 삭제하시겠습니까?</p>
+        <p class="modal_sub">삭제한 내용은 복구 할 수 없습니다.</p>
+        <div class="modal_btn">
+          <button class="delete" id="post_delete">취소</button>
+          <button class="ok" id="post_ok">확인</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="comment_modal">
+      <div class="modal_body">
+        <p class="modal_title">댓글을 삭제하시겠습니까?</p>
+        <p class="modal_sub">삭제한 내용은 복구 할 수 없습니다.</p>
+        <div class="modal_btn">
+          <button class="delete" type="submit" id="comment_delete">취소</button>
+          <button class="ok" type="submit" id="comment_ok">확인</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/js/post_detail.js"></script>
+</html>

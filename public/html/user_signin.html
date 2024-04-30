@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/user_signin.css" />
+
+    <title>커뮤니티</title>
+  </head>
+  <body>
+    <header>
+      <p class="title">아무 말 대잔치</p>
+    </header>
+    <section>
+      <article>
+        <h1>로그인</h1>
+        <form id="signin_form" action="/">
+          <h5>이메일</h5>
+          <input id="email" type="email" placeholder="이메일을 입력하세요" />
+          <p id="email_helper">*이메일을 입력해주세요</p>
+          <h5>비밀번호</h5>
+          <input
+            id="password"
+            type="password"
+            placeholder="비밀번호를 입력하세요"
+          />
+          <br />
+          <p id="pw_helper">*비밀번호를 입력해주세요.</p>
+          <button id="login" type="submit" value="로그인">로그인</button><br />
+        </form>
+        <a id="signup" href="/users/signup">회원가입</a>
+      </article>
+    </section>
+  </body>
+  <script src="/js/user_signin.js"></script>
+</html>

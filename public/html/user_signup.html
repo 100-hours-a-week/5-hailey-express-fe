@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/user_signup.css" />
+
+    <title>커뮤니티</title>
+  </head>
+
+  <body>
+    <header>
+      <table>
+        <tr>
+          <th><a href="javascript:history.back();" target="_self">＜</a></th>
+          <td class="title">아무 말 대잔치</td>
+          <th><img src="/image/images.jpeg" alt="" style="display: none" /></th>
+        </tr>
+      </table>
+    </header>
+    <section>
+      <p class="signup_title">회원가입</p>
+      <form id="signup_form" action="/users/signup">
+        <lable class="item">프로필 사진</lable><br />
+        <span id="image_helper" class="helper"
+          >*프로필 사진을 추가해주세요.</span
+        ><br />
+        <div class="user_img">
+          <label id="user_img_label" for="user_img"><span></span></label>
+          <input id="user_img" type="file" style="display: none" /> <br />
+        </div>
+        <lable class="item" for="user_mail">이메일*</lable><br />
+        <input
+          id="user_mail"
+          class="input"
+          type="email"
+          placeholder="이메일을 입력하세요"
+        />
+        <br />
+        <span id="email_helper" class="helper">*이메일을 입력해주세요.</span
+        ><br />
+
+        <lable class="item" for="user_pw">비밀번호*</lable><br />
+        <input
+          id="user_pw"
+          class="input"
+          type="password"
+          placeholder="비밀번호를 입력하세요"
+        />
+        <br />
+        <span id="pw_helper" class="helper">*비밀번호를 입력해주세요.</span
+        ><br />
+
+        <lable class="item" for="user_repw">비밀번호 확인*</lable><br />
+        <input
+          id="user_repw"
+          class="input"
+          type="password"
+          placeholder="비밀번호를 한번 더 입력하세요"
+        />
+        <br />
+        <span id="repw_helper" class="helper"
+          >*비밀번호를 한번 더 입력해주세요.</span
+        ><br />
+
+        <lable class="item" for="user_nickname">닉네임*</lable><br />
+        <input
+          id="user_nickname"
+          class="input"
+          type="text"
+          placeholder="닉네임을 입력하세요"
+        />
+        <br />
+        <span id="nickname_helper" class="helper">*닉네임을 입력해주세요.</span
+        ><br />
+
+        <div class="submit_btn">
+          <button id="signup_btn" type="submit" value="회원가입" disabled>
+            회원가입
+          </button>
+        </div>
+      </form>
+      <div class="loginpage">
+        <a href="/users/login" target="_self">로그인하러 가기</a>
+      </div>
+    </section>
+  </body>
+  <script src="/js/user_signup.js"></script>
+</html>

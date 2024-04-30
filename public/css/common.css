@@ -1,0 +1,12 @@
+/* 폰트 추가 */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
+body {
+  display: flex;
+  justify-content: center;
+  font-family: "Noto Sans KR", sans-serif;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #f4f5f7;
+}

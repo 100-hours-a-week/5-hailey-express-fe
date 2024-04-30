@@ -1,0 +1,131 @@
+header {
+  display: flex;
+  background-color: #f4f5f7;
+  width: 1920px;
+  height: 104px;
+  border-bottom: 1px solid #000000;
+}
+
+table {
+  width: 100%;
+  margin-left: 684px;
+  margin-right: 684px;
+}
+
+th {
+  width: 10%;
+}
+
+th a {
+  text-decoration: none;
+  color: black;
+}
+
+.title {
+  width: 472px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 32px;
+}
+
+th img {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.signup_title {
+  margin-top: 150px;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.item {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.helper {
+  display: inline-block;
+  width: 355px;
+  font-size: 12px;
+  color: red;
+}
+
+.user_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.user_img label {
+  position: relative;
+  width: 149px;
+  height: 149px;
+  border-radius: 50%;
+  background-color: #c4c4c4;
+  font-size: 48px;
+  font-weight: 100;
+  text-align: center;
+  line-height: 149px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* 가로선 */
+.user_img span::before,
+.user_img span::after {
+  content: '';
+  position: absolute;
+  width: 15%;
+  height: 1px;
+  background-color: black;
+  top: 50%;
+  left: 43%;
+}
+
+/* 세로선 */
+.user_img span::after {
+  transform: rotate(90deg);
+}
+
+.input {
+  margin-top: 8px;
+  margin-bottom: 0;
+  width: 355px;
+  height: 33px;
+  border-radius: 4px;
+  border: 1px solid #000000;
+  background-color: #f4f5f7;
+}
+
+.input::placeholder {
+  font-size: 14px;
+  color: #000000;
+}
+
+button[type='submit'] {
+  margin-top: 15px;
+  width: 355px;
+  height: 33px;
+  background-color: #aca0eb;
+  color: white;
+  border-radius: 4px;
+  border: none;
+}
+
+.loginpage {
+  margin-top: 15px;
+  display: block;
+  text-align: center;
+}
+
+.loginpage a {
+  font-size: 14px;
+  color: black;
+  text-decoration: none;
+}

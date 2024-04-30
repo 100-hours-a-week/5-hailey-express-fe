@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/css/post_modify.css" />
+
+    <title>커뮤니티</title>
+  </head>
+
+  <body>
+    <header>
+      <table>
+        <tr>
+          <th><a href="javascript:history.back();" target="_self">＜</a></th>
+          <td class="title">아무 말 대잔치</td>
+          <th><img src="/image/images.jpeg" alt="" /></th>
+        </tr>
+      </table>
+    </header>
+    <section>
+      <p class="post_title">게시글 수정</p>
+      <form id="post_modify_form">
+        <p class="item">제목*</p>
+        <input class="item_title" type="text" value="" maxlength="26" />
+        <p class="item">내용*</p>
+        <textarea class="item_content"></textarea>
+        <p class="item">이미지</p>
+        <div class="file_btn">
+          <label for="imgupload">파일 선택</label>
+          <input
+            class="item_img"
+            type="file"
+            id="imgupload"
+            style="display: none"
+          />
+          <span>기존 파일 명</span> <br />
+        </div>
+        <div class="submit_btn">
+          <button type="submit">수정하기</button>
+        </div>
+      </form>
+    </section>
+  </body>
+  <script src="/js/post_modify.js"></script>
+</html>
