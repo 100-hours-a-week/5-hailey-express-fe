@@ -110,6 +110,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const post_detail = document.createElement('div');
 
+      console.log('=====', detail.file_id);
+
       // 좋아요,댓글,조회수 format
       const comment = formatNumber(detail.comment_count);
       const hit = formatNumber(detail.hits);
@@ -139,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
         </div>
         <div class="main">
-          <img src="/image/family.jpeg" alt=""/>
+          <img src="${detail.file_id}" alt=""/>
           <p>${detail.post_content}</p>
           <div class="hit_comment">
             <div class="hit">

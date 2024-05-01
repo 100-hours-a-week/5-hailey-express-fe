@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const title = document.querySelector('.item_title');
   const content = document.querySelector('.item_content');
-  const imageName = document.querySelector('.item_img');
+  const imageInput = document.getElementById('imgupload');
   const form = document.getElementById('post_modify_form');
 
   const url = window.location.pathname; // 현재 페이지의 경로를 가져옴
@@ -19,19 +19,25 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const formdata = new FormData();
-    formdata.append('title', title.value);
-    formdata.append('content', content.value);
-    formdata.append('file', imageName.files[0]);
+    const file = imageInput.files[0];
+    const reader = new FileReader();
 
-    console.log('========', postNum);
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      const base64Image = reader.result;
 
-    fetch(`http://localhost:3001/api/posts/${postNum}/update`, {
-      method: 'PATCH',
-      body: formdata,
-    }).then((response) => {
-      alert('게시글 수정 성공');
-      window.location.href = `/posts/${postNum}`;
-    });
+      const formdata = new FormData();
+      formdata.append('title', title.value);
+      formdata.append('content', content.value);
+      formdata.append('file', base64Image);
+
+      fetch(`http://localhost:3001/api/posts/${postNum}/update`, {
+        method: 'PATCH',
+        body: formdata,
+      }).then((response) => {
+        alert('게시글 수정 성공');
+        window.location.href = `/posts/${postNum}`;
+      });
+    };
   });
 });

@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-// import fs from 'fs';
 const __dirname = path.resolve();
 
 const app = express();
@@ -30,7 +29,6 @@ app.get('/posts/:postNum/update', (req, res) => {
 
 app.get('/users/signup', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'html', 'user_signup.html'));
-  // fs.mkdirSync(path.join(__dirname, 'test'));
 });
 
 app.get('/users/:userId', (req, res) => {

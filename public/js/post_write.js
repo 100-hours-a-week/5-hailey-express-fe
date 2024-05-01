@@ -55,18 +55,25 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const formdata = new FormData();
-    formdata.append('title', titleInput.value);
-    formdata.append('content', contentInput.value);
-    formdata.append('file', imageInput.files[0]);
-    console.log('--------------', imageInput.files[0]);
+    const file = imageInput.files[0];
+    const reader = new FileReader();
 
-    fetch('http://localhost:3001/api/post/new', {
-      method: 'POST',
-      body: formdata,
-    }).then((response) => {
-      alert('게시글 등록 성공');
-      window.location.href = '/posts';
-    });
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      const base64Image = reader.result;
+
+      const formdata = new FormData();
+      formdata.append('title', titleInput.value);
+      formdata.append('content', contentInput.value);
+      formdata.append('file', base64Image);
+
+      fetch('http://localhost:3001/api/post/new', {
+        method: 'POST',
+        body: formdata,
+      }).then((response) => {
+        alert('게시글 등록 성공');
+        window.location.href = '/posts';
+      });
+    };
   });
 });
