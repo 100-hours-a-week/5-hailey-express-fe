@@ -172,18 +172,27 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const formdata = new FormData();
-    formdata.append('email', emailInput.value);
-    formdata.append('password', passwordInput.value);
-    formdata.append('nickname', nicknameInput.value);
-    formdata.append('profileImage', imageInput.files[0]);
+    const file = imageInput.files[0];
+    const reader = new FileReader();
 
-    fetch('http://localhost:3001/api/users/signup', {
-      method: 'POST',
-      body: formdata,
-    }).then((response) => {
-      alert('회원가입 성공');
-      window.location.href = '/users/login';
-    });
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      const base64Image = reader.result;
+      console.log('base64Image', base64Image);
+
+      const formdata = new FormData();
+      formdata.append('email', emailInput.value);
+      formdata.append('password', passwordInput.value);
+      formdata.append('nickname', nicknameInput.value);
+      formdata.append('profileImage', base64Image);
+
+      fetch('http://localhost:3001/api/users/signup', {
+        method: 'POST',
+        body: formdata,
+      }).then((response) => {
+        alert('회원가입 성공');
+        window.location.href = '/users/login';
+      });
+    };
   });
 });

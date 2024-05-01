@@ -37,7 +37,7 @@ app.get('/users/:userId', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'html', 'user_modify.html'));
 });
 
-app.get('/modify_pw', (req, res) => {
+app.get('/users/:userId/password', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'html', 'modify_pw.html'));
 });
 

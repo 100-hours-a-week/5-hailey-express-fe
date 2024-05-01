@@ -236,17 +236,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // modalOk.addEventListener('click', function () {
-  //   alert('게시글 삭제완료');
-  // });
-
   modalDelete.addEventListener('click', function () {
     modal.style.display = 'none';
   });
-
-  // commentModalOk.addEventListener('click', function () {
-  //   alert('댓글 삭제완료');
-  // });
 
   commentModalDelete.addEventListener('click', function () {
     comment_modal.style.display = 'none';

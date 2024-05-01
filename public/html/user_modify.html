@@ -17,17 +17,17 @@
           <th><a href="" target="_self"></a></th>
           <td class="title">아무 말 대잔치</td>
           <th>
-            <img id="top_user_img" src="/image/images.jpeg" alt="" />
+            <img id="top_user_img" src="" alt="" />
             <div class="dropdown">
               <ul>
                 <li>
-                  <a href="/user_modify" target="_self">회원정보수정</a>
+                  <a href="" target="_self">회원정보수정</a>
                 </li>
                 <li>
-                  <a href="/modify_pw" target="_self">비밀번호수정</a>
+                  <a href="" target="_self">비밀번호수정</a>
                 </li>
                 <li>
-                  <a href="/">로그아웃</a>
+                  <a href="/users/login">로그아웃</a>
                 </li>
               </ul>
             </div>
@@ -37,6 +37,7 @@
     </header>
     <section>
       <p class="modify_title">회원정보수정</p>
+      <div id="user_modify_form"></div>
       <form id="modify_form" action="/user/modify">
         <lable class="item">프로필 사진*</lable><br />
         <div class="user_img">
@@ -48,15 +49,10 @@
         <br />
 
         <lable class="item" for="user_mail">이메일</lable><br />
-        <p class="user_mail">startupcode@gmail.com</p>
+        <span class="user_mail"></span><br /><br />
 
         <lable class="item" for="user_nickname">닉네임</lable><br />
-        <input
-          id="user_nickname"
-          class="input"
-          type="text"
-          value="스타트업코드"
-        />
+        <input id="user_nickname" class="input" type="text" value="" />
         <br />
         <span id="nickname_helper">*닉네임을 입력해주세요.</span><br />
 

@@ -72,35 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const email = emailInput.value;
     const password = passwordInput.value;
 
-    //   fetch('../users.json')
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       const users = data.users;
-    //       const userFound = users.find(
-    //         (users) => users.email === email && users.password === password
-    //       );
-
-    //       if (userFound) {
-    //         alert('로그인 성공');
-    //         window.location.href = '/post';
-    //       } else {
-    //         alert('회원 정보가 없습니다.');
-    //       }
-    //     })
-    //     .catch((error) => console.error('에러 발생', error));
-
-    // fetch('http://localhost:3001/api/email/check', {
-    //   method: 'GET',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({email: email})
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     email_helper.textContent = ''
-    //   });
-
     fetch('http://localhost:3001/api/users/login', {
       method: 'POST',
       headers: {

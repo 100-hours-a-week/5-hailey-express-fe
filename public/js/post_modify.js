@@ -34,6 +34,4 @@ document.addEventListener('DOMContentLoaded', function () {
       window.location.href = `/posts/${postNum}`;
     });
   });
-
-  // commentModify.addEventListener('', function () {});
 });

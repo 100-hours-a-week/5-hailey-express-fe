@@ -22,7 +22,12 @@
     </header>
     <section>
       <p class="signup_title">회원가입</p>
-      <form id="signup_form" action="/users/signup">
+      <form
+        id="signup_form"
+        action="/users/signup"
+        method="post"
+        enctype="multipart/form-data"
+      >
         <lable class="item">프로필 사진</lable><br />
         <span id="image_helper" class="helper"
           >*프로필 사진을 추가해주세요.</span
