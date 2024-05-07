@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
   function formatNumber(number) {
     if (number >= 100000) {
-      return (number / 1000).toFixed(0) + 'k';
+      return `${(number / 1000).toFixed(0)}k`;
     } else if (number >= 10000) {
-      return (number / 1000).toFixed(0) + 'k';
+      return `${(number / 1000).toFixed(0)}k`;
     } else if (number >= 1000) {
-      return (number / 1000).toFixed(0) + 'k';
+      return `${(number / 1000).toFixed(0)}k`;
     } else {
       return number;
     }
