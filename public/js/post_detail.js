@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const topUserImage = document.getElementById('top_user_img');
   const modal = document.getElementById('post_modal');
   const comment_modal = document.getElementById('comment_modal');
   const commentInput = document.getElementById('comment_box');
@@ -13,6 +14,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const postNum = window.location.pathname.split('/').pop();
   let isEditing = false; // 댓글 등록, 수정 버튼 둘다 이용하기위함
+
+  fetch(`http://localhost:3001/api/users/userInfo`, {
+    credentials: 'include',
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const userInfo = data.userId;
+      topUserImage.src = data.profileImage;
+
+      console.log(userInfo);
+
+      topUserImage.addEventListener('click', function () {
+        const userDropdown = document.createElement('div');
+
+        userDropdown.innerHTML = `
+     
+        <ul>
+          <li>
+            <a href="/users/${userInfo}" target="_self">회원정보수정</a>
+          </li>
+          <li>
+            <a href="/users/${userInfo}/password" target="_self">비밀번호수정</a>
+          </li>
+          <li>
+            <a href="/users/login">로그아웃</a>
+          </li>
+        </ul>
+        
+        `;
+
+        document.querySelector('.dropdown').appendChild(userDropdown);
+
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.style.display = 'block';
+      });
+    });
 
   function formatNumber(number) {
     if (number >= 100000) {
@@ -103,14 +140,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  fetch(`http://localhost:3001/api/posts/${postNum}`)
+  fetch(`http://localhost:3001/api/posts/${postNum}`, {
+    credentials: 'include',
+  })
     .then((response) => response.json())
     .then((data) => {
       const detail = data.getPostDetail;
+      const userSession = data.session;
 
       const post_detail = document.createElement('div');
-
-      console.log('=====', detail.file_id);
 
       // 좋아요,댓글,조회수 format
       const comment = formatNumber(detail.comment_count);
@@ -122,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         <div class="detail_sub">
           <div>
-            <img src="/image/images.jpeg" alt="" />
+            <img src=${detail.profile_image_path} alt="" />
           </div>
           <div>
             <p class="comment_user">${detail.nickname}</p>
@@ -132,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
           <div class="button">
             <button
+            id="post_modify_button"
               type="button"
               onclick="location.href='/posts/${postNum}/update'"
             >
@@ -158,6 +197,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
       document.getElementById('post_detail').appendChild(post_detail);
 
+      if (detail.nickname == userSession) {
+        post_detail.querySelector('#post_modify_button').style.display =
+          'block';
+        post_detail.querySelector('#post_delete_button').style.display =
+          'block';
+      } else {
+        post_detail.querySelector('#post_modify_button').style.display = 'none';
+        post_detail.querySelector('#post_delete_button').style.display = 'none';
+      }
+
       post_detail
         .querySelector('#post_delete_button')
         .addEventListener('click', function () {
@@ -165,10 +214,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-  fetch(`http://localhost:3001/api/posts/${postNum}/comments`)
+  fetch(`http://localhost:3001/api/posts/${postNum}/comments`, {
+    credentials: 'include',
+  })
     .then((response) => response.json())
     .then((data) => {
       const comments = data.getComment;
+      const userSession = data.session;
 
       comments.forEach((comment) => {
         const card = document.createElement('div');
@@ -201,6 +253,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.getElementById('commet_zip').appendChild(card);
 
+        if (comment.nickname == userSession) {
+          card.querySelector('#comment_modify_button').style.display = 'block';
+          card.querySelector('#comment_delete_button').style.display = 'block';
+        } else {
+          card.querySelector('#comment_modify_button').style.display = 'none';
+          card.querySelector('#comment_delete_button').style.display = 'none';
+        }
+
         card
           .querySelector('#comment_modify_button')
           .addEventListener('click', function () {
@@ -231,6 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
       fetch(`http://localhost:3001/api/posts/${postNum}/comments`, {
         method: 'POST',
         body: formdata,
+        credentials: 'include',
       }).then((response) => {
         alert('댓글 등록 성공');
         window.location.href = `/posts/${postNum}`;

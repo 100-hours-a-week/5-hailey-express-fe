@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "debug": "^4.3.4",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",

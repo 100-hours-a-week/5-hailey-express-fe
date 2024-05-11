@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const topUserImage = document.getElementById('top_user_img');
-  const dropdown = document.querySelector('.dropdown');
+
   const imageInput = document.getElementById('user_img');
   const nicknameInput = document.getElementById('user_nickname');
   const nickname_helper = document.getElementById('nickname_helper');
@@ -47,6 +47,27 @@ document.addEventListener('DOMContentLoaded', function () {
   //  이벤트리스너 start
 
   topUserImage.addEventListener('click', function () {
+    const userDropdown = document.createElement('div');
+
+    userDropdown.innerHTML = `
+ 
+    <ul>
+      <li>
+        <a href="/users/${userId}" target="_self">회원정보수정</a>
+      </li>
+      <li>
+        <a href="/users/${userId}/password" target="_self">비밀번호수정</a>
+      </li>
+      <li>
+        <a href="/users/login">로그아웃</a>
+      </li>
+    </ul>
+    
+    `;
+
+    document.querySelector('.dropdown').appendChild(userDropdown);
+
+    const dropdown = document.querySelector('.dropdown');
     dropdown.style.display = 'block';
   });
 

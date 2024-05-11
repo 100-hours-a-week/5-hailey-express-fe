@@ -1,9 +1,64 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const topUserImage = document.getElementById('top_user_img');
   const titleInput = document.querySelector('.item_title');
   const contentInput = document.querySelector('.item_content');
   const imageInput = document.querySelector('.item_img');
   const submit_btn = document.getElementById('submit_btn');
   const form = document.getElementById('post_write_form');
+
+  fetch(`http://localhost:3001/api/users/userInfo`, {
+    credentials: 'include',
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const userInfo = data.userId;
+      topUserImage.src = data.profileImage;
+
+      console.log(userInfo);
+
+      topUserImage.addEventListener('click', function () {
+        const userDropdown = document.createElement('div');
+
+        userDropdown.innerHTML = `
+     
+        <ul>
+          <li>
+            <a href="/users/${userInfo}" target="_self">회원정보수정</a>
+          </li>
+          <li>
+            <a href="/users/${userInfo}/password" target="_self">비밀번호수정</a>
+          </li>
+          <li>
+          <button id="logout_button">로그아웃</button>
+          </li>
+        </ul>
+        
+        `;
+
+        document.querySelector('.dropdown').appendChild(userDropdown);
+
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.style.display = 'block';
+
+        document
+          .querySelector('#logout_button')
+          .addEventListener('click', function () {
+            fetch('http://localhost:3001/api/users/logout', {
+              credentials: 'include',
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data.success);
+                if (data.success == true) {
+                  alert('로그아웃되었습니다.');
+                  window.location.href = '/users/login';
+                } else {
+                  alert('로그아웃에 실패했습니다.');
+                }
+              });
+          });
+      });
+    });
 
   function checkTitle() {
     const title = titleInput.value;
@@ -70,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
       fetch('http://localhost:3001/api/post/new', {
         method: 'POST',
         body: formdata,
+        credentials: 'include',
       }).then((response) => {
         alert('게시글 등록 성공');
         window.location.href = '/posts';

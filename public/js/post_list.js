@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const topUserImage = document.getElementById('top_user_img');
+
   function formatNumber(number) {
     if (number >= 100000) {
       return `${(number / 1000).toFixed(0)}k`;
@@ -10,6 +12,42 @@ document.addEventListener('DOMContentLoaded', function () {
       return number;
     }
   }
+
+  fetch(`http://localhost:3001/api/users/userInfo`, {
+    credentials: 'include',
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const userInfo = data.userId;
+      topUserImage.src = data.profileImage;
+
+      console.log(userInfo);
+
+      topUserImage.addEventListener('click', function () {
+        const userDropdown = document.createElement('div');
+
+        userDropdown.innerHTML = `
+     
+        <ul>
+          <li>
+            <a href="/users/${userInfo}" target="_self">회원정보수정</a>
+          </li>
+          <li>
+            <a href="/users/${userInfo}/password" target="_self">비밀번호수정</a>
+          </li>
+          <li>
+            <a href="/users/login">로그아웃</a>
+          </li>
+        </ul>
+        
+        `;
+
+        document.querySelector('.dropdown').appendChild(userDropdown);
+
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.style.display = 'block';
+      });
+    });
 
   fetch('http://localhost:3001/api/posts')
     .then((response) => response.json())
@@ -57,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   </div>
               </div>
               <div class="card_bottom">
-                  <img src="/image/images.jpeg" alt="" />
+                  <img src=${post.profile_image_path} alt="" />
                   <p>${post.nickname}</p>
               </div>
               `;
@@ -65,4 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('postlist').appendChild(card);
       });
     });
+
+  //  이벤트리스너 start
 });

@@ -1,10 +1,47 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const topUserImage = document.getElementById('top_user_img');
   const passwordInput = document.getElementById('user_pw');
   const repasswordInput = document.getElementById('user_repw');
   const pw_helper = document.getElementById('pw_helper');
   const repw_helper = document.getElementById('repw_helper');
   const form = document.getElementById('modify_pw_form');
   const submit_btn = document.getElementById('submit_btn');
+
+  fetch(`http://localhost:3001/api/users/userInfo`, {
+    credentials: 'include',
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const userInfo = data.userId;
+      topUserImage.src = data.profileImage;
+
+      console.log(userInfo);
+
+      topUserImage.addEventListener('click', function () {
+        const userDropdown = document.createElement('div');
+
+        userDropdown.innerHTML = `
+     
+        <ul>
+          <li>
+            <a href="/users/${userInfo}" target="_self">회원정보수정</a>
+          </li>
+          <li>
+            <a href="/users/${userInfo}/password" target="_self">비밀번호수정</a>
+          </li>
+          <li>
+            <a href="/users/login">로그아웃</a>
+          </li>
+        </ul>
+        
+        `;
+
+        document.querySelector('.dropdown').appendChild(userDropdown);
+
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.style.display = 'block';
+      });
+    });
 
   function checkPassword() {
     const password = passwordInput.value;
