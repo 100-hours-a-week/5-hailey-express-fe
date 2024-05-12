@@ -148,3 +148,13 @@ img {
   font-weight: 400;
   line-height: 35px;
 }
+
+#logout_button {
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+}
+
+#logout_button:hover {
+  background-color: transparent;
+}

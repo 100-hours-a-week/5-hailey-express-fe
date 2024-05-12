@@ -6,12 +6,12 @@ const __dirname = path.resolve();
 const app = express();
 const port = 3000;
 
-// const corsOptions = {
-//   origin: 'http://localhost:3001',
-//   credentials: true,
-// };
+const corsOptions = {
+  origin: 'http://localhost:3001',
+  credentials: true,
+};
 
-// app.use(cors());
+app.use(cors());
 
 app.use(express.static('public'));
 

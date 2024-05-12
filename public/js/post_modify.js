@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="/users/${userInfo}/password" target="_self">비밀번호수정</a>
           </li>
           <li>
-            <a href="/users/login">로그아웃</a>
+            <button id="logout_button">로그아웃</button>
           </li>
         </ul>
         
@@ -41,6 +41,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const dropdown = document.querySelector('.dropdown');
         dropdown.style.display = 'block';
+
+        document
+          .querySelector('#logout_button')
+          .addEventListener('click', function () {
+            fetch('http://localhost:3001/api/users/logout', {
+              credentials: 'include',
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data.success);
+                if (data.success == true) {
+                  alert('로그아웃되었습니다.');
+                  window.location.href = '/users/login';
+                } else {
+                  alert('로그아웃에 실패했습니다.');
+                }
+              });
+          });
       });
     });
 
