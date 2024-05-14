@@ -30,9 +30,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  fetch(`http://localhost:3001/api/users/${userId}`)
+  fetch(`http://localhost:3001/api/users/${userId}`, {
+    credentials: 'include',
+  })
     .then((response) => response.json())
     .then((data) => {
+      if (data.success == false) {
+        window.location.href = '/users/login';
+      }
+
       const detail = data.getUserDetail;
 
       topUserImage.src = detail.profileImage;
@@ -122,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
       fetch(`http://localhost:3001/api/users/${userId}/update`, {
         method: 'PATCH',
         body: formdata,
+        credentials: 'include',
       }).then((response) => {
         toast.style.display = 'block';
       });

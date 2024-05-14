@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
   })
     .then((response) => response.json())
     .then((data) => {
+      if (data.success == false) {
+        window.location.href = '/users/login';
+      }
+
       const userInfo = data.userId;
       topUserImage.src = data.profileImage;
 

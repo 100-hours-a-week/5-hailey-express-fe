@@ -67,6 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
   })
     .then((response) => response.json())
     .then((data) => {
+      if (data.success == false) {
+        window.location.href = '/users/login';
+      }
+
       const detail = data.getPostDetail;
 
       title.value = detail.post_title;
@@ -91,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
       fetch(`http://localhost:3001/api/posts/${postNum}/update`, {
         method: 'PATCH',
         body: formdata,
+        credentials: 'include',
       }).then((response) => {
         alert('게시글 수정 성공');
         window.location.href = `/posts/${postNum}`;

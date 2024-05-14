@@ -67,9 +67,15 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-  fetch('http://localhost:3001/api/posts')
+  fetch('http://localhost:3001/api/posts', {
+    credentials: 'include',
+  })
     .then((response) => response.json())
     .then((data) => {
+      if (data.success == false) {
+        window.location.href = '/users/login';
+      }
+
       const posts = data.posts;
 
       posts.forEach((post) => {

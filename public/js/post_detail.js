@@ -163,6 +163,10 @@ document.addEventListener('DOMContentLoaded', function () {
   })
     .then((response) => response.json())
     .then((data) => {
+      if (data.success == false) {
+        window.location.href = '/users/login';
+      }
+
       const detail = data.getPostDetail;
       const userSession = data.session;
 
@@ -237,6 +241,10 @@ document.addEventListener('DOMContentLoaded', function () {
   })
     .then((response) => response.json())
     .then((data) => {
+      if (data.success == false) {
+        window.location.href = '/users/login';
+      }
+
       const comments = data.getComment;
       const userSession = data.session;
 
